@@ -11,8 +11,8 @@ import (
 	"github.com/ethereum-optimism/optimism/l2geth/common"
 )
 
-func RequestTxTraceCache(ctx context.Context, endpoint string, chainId *big.Int, hash common.Hash) (interface{}, error) {
-	requrl := fmt.Sprintf("%s/trace/tx?chainId=%s&hash=%s", endpoint, chainId.String(), hash.Hex())
+func RequestTxTraceCache(ctx context.Context, endpoint, tracer string, chainId *big.Int, hash common.Hash) (interface{}, error) {
+	requrl := fmt.Sprintf("%s/trace/tx?chainId=%s&tracer=%s&hash=%s", endpoint, chainId.String(), tracer, hash.Hex())
 	req, err := http.NewRequestWithContext(ctx, http.MethodGet, requrl, nil)
 	if err != nil {
 		return nil, err

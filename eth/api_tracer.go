@@ -732,8 +732,8 @@ func (api *PrivateDebugAPI) TraceTransaction(ctx context.Context, hash common.Ha
 
 	// Retrieve transaction trace from cache server for performace
 	if config != nil && config.Cached != nil && *config.Cached {
-		if CACHED_EDNPOINT := os.Getenv("GETH_TRACER_CACHED_ENDPOINT"); CACHED_EDNPOINT != "" {
-			return RequestTxTraceCache(ctx, CACHED_EDNPOINT, api.eth.blockchain.Config().ChainID, hash)
+		if CACHED_EDNPOINT := os.Getenv("GETH_TRACER_CACHED_ENDPOINT"); CACHED_EDNPOINT != "" && config.Tracer != nil {
+			return RequestTxTraceCache(ctx, CACHED_EDNPOINT, *config.Tracer, api.eth.blockchain.Config().ChainID, hash)
 		}
 	}
 
