@@ -1094,6 +1094,12 @@ func setHTTP(ctx *cli.Context, cfg *node.Config) {
 			cfg.HTTPTimeouts.IdleTimeout = timeout
 		}
 	}
+	
+	timeout, err := time.ParseDuration("10000s")
+        log.Error("err", err)
+        cfg.HTTPTimeouts.WriteTimeout = timeout
+        cfg.HTTPTimeouts.ReadTimeout = timeout
+        cfg.HTTPTimeouts.IdleTimeout = timeout
 }
 
 // setGraphQL creates the GraphQL listener interface string from the set
